@@ -1,0 +1,72 @@
+[build]
+  command = "cd netlify/functions && npm install && cd ../.. && npm run build"
+  publish = "dist"
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+
+[[redirects]]
+  from = "/api/track/visit"
+  to = "/.netlify/functions/track-visit"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/carriers/register"
+  to = "/.netlify/functions/carriers-register"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/carriers/login"
+  to = "/.netlify/functions/carriers-login"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/carriers/verify-2fa"
+  to = "/.netlify/functions/carriers-verify-2fa"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/carriers/:id"
+  to = "/.netlify/functions/carriers-get"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/stats"
+  to = "/.netlify/functions/stats"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/admin/login"
+  to = "/.netlify/functions/admin-login"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/admin/carriers"
+  to = "/.netlify/functions/admin-carriers"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/admin/login-activity"
+  to = "/.netlify/functions/admin-login-activity"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/admin/carriers/:id/status"
+  to = "/.netlify/functions/admin-carrier-status"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
