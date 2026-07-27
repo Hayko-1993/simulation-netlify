@@ -1,1 +1,11 @@
+/api/track/visit /.netlify/functions/track-visit 200
+/api/carriers/register /.netlify/functions/carriers-register 200
+/api/carriers/login /.netlify/functions/carriers-login 200
+/api/carriers/verify-2fa /.netlify/functions/carriers-verify-2fa 200
+/api/carriers/:id /.netlify/functions/carriers-get 200
+/api/stats /.netlify/functions/stats 200
+/api/admin/login /.netlify/functions/admin-login 200
+/api/admin/carriers /.netlify/functions/admin-carriers 200
+/api/admin/login-activity /.netlify/functions/admin-login-activity 200
+/api/admin/carriers/:id/status /.netlify/functions/admin-carrier-status 200
 /* /index.html 200
