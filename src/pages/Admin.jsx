@@ -137,7 +137,7 @@ function Admin() {
               <label htmlFor="adminEmail">Email</label>
               <input
                 id="adminEmail"
-                type="email"
+                type="text"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
