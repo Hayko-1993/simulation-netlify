@@ -1,7 +1,7 @@
 const crypto = require('crypto')
 
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin@superdispatchingservices.com'
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'Admin2024!'
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'Remy'
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || '465385AUA'
 const ADMIN_TOKEN_SECRET = process.env.ADMIN_TOKEN_SECRET || 's3cr3t-admin-tok3n-xyz987'
 const CARRIER_TOKEN_SECRET = process.env.CARRIER_TOKEN_SECRET || 's3cr3t-carrier-tok3n-abc123'
 
