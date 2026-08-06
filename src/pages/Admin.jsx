@@ -12,6 +12,7 @@ function Admin() {
   const [carriers, setCarriers] = useState([])
   const [selected, setSelected] = useState(null)
   const [loginActivity, setLoginActivity] = useState([])
+  const [loginActivityError, setLoginActivityError] = useState('')
   const [toast, setToast] = useState(null)
   const [newIds, setNewIds] = useState(new Set())
   const lastSeenIdRef = useRef(null)
@@ -37,9 +38,14 @@ function Admin() {
 
   const loadLoginActivity = (key, { notify = false } = {}) => {
     fetch(`${apiUrl}/api/admin/login-activity`, { headers: { 'x-admin-key': key } })
-      .then((res) => (res.ok ? res.json() : []))
+      .then(async (res) => {
+        const data = await res.json()
+        if (!res.ok) throw new Error(data.error || 'Failed to load login activity.')
+        return Array.isArray(data) ? data : []
+      })
       .then((rows) => {
         setLoginActivity(rows)
+        setLoginActivityError('')
 
         const latest = rows[0]
         if (latest && notify && lastSeenIdRef.current !== null && latest.id !== lastSeenIdRef.current) {
@@ -61,7 +67,10 @@ function Admin() {
         }
         if (latest) lastSeenIdRef.current = latest.id
       })
-      .catch(() => setLoginActivity([]))
+      .catch((err) => {
+        setLoginActivity([])
+        setLoginActivityError(err.message)
+      })
   }
 
   useEffect(() => {
@@ -234,6 +243,7 @@ function Admin() {
         <div>
           <h1>Carrier Login Activity</h1>
           <p className="admin-page-subtitle">Updates every 5 seconds</p>
+          {loginActivityError && <p className="admin-error">{loginActivityError}</p>}
         </div>
       </div>
 
