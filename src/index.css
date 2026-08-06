@@ -485,10 +485,8 @@ a {
 
 /* ----- Carrier login (centered card) ----- */
 .login-page {
-  min-height: calc(100vh - 65px);
-  background-color: #f4f6f8;
-  background-image: radial-gradient(circle, #d7dde3 1px, transparent 1px);
-  background-size: 22px 22px;
+  min-height: 100vh;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
 }
@@ -574,7 +572,7 @@ a {
   background: none;
   border: none;
   cursor: pointer;
-  color: #8a93a6;
+  color: #5b9bd5;
   font-size: 13px;
   padding: 4px;
 }
@@ -632,6 +630,333 @@ a {
   font-size: 13px;
   color: #b0b7c3;
   margin: 12px auto 32px;
+}
+
+/* ----- Central Dispatch login ----- */
+.cd-card {
+  max-width: 420px;
+  padding: 24px 32px 28px;
+  border-radius: 2px;
+  border: 1px solid #d1d1d1;
+  box-shadow: none;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.cd-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.cd-header-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.cd-brand-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a1a;
+  letter-spacing: -0.2px;
+}
+
+.cd-brand-sub {
+  font-size: 11px;
+  color: #888;
+  margin-top: 2px;
+}
+
+.cd-divider {
+  border: none;
+  border-top: 1px solid #d1d1d1;
+  margin: 0 0 20px;
+}
+
+.cd-card .cd-title,
+.login-card.cd-card h1.cd-title {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 700;
+  color: #005696;
+  margin-bottom: 18px;
+}
+
+.cd-banner {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: #eef6fc;
+  border: none;
+  border-left: 4px solid #005696;
+  border-radius: 0;
+  padding: 12px 14px;
+  margin-bottom: 20px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.cd-banner svg {
+  flex-shrink: 0;
+  color: #005696;
+  margin-top: 1px;
+}
+
+.cd-banner p {
+  margin: 0;
+}
+
+.cd-banner a {
+  color: #005696;
+  text-decoration: underline;
+  word-break: break-all;
+}
+
+.cd-form .form-field {
+  margin-bottom: 12px;
+}
+
+.cd-form .form-field label {
+  font-size: 13px;
+  font-weight: 400;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.cd-form .form-field input {
+  border: 1px solid #c5ccd4;
+  border-radius: 3px;
+  padding: 8px 10px;
+  font-size: 14px;
+}
+
+.cd-form .form-field input:focus {
+  outline: 2px solid #005696;
+  border-color: #005696;
+}
+
+.cd-remember {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #2d2d2d;
+  margin: 4px 0 18px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.cd-remember input[type='checkbox'] {
+  width: 15px;
+  height: 15px;
+  accent-color: #005696;
+  cursor: pointer;
+}
+
+.cd-btn {
+  background: #005696 !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 3px;
+  padding: 10px 24px;
+  font-size: 15px;
+  font-weight: 700;
+  margin-top: 4px;
+  transition: background 0.15s ease;
+}
+
+.cd-btn:hover:not(:disabled) {
+  background: #004a82 !important;
+}
+
+.cd-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.login-status-msg {
+  margin-top: 12px;
+  font-size: 13px;
+  color: #666;
+  text-align: center;
+}
+
+.cd-forgot-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 16px;
+  font-size: 13px;
+  color: #333;
+}
+
+.cd-forgot-links {
+  display: flex;
+  gap: 14px;
+}
+
+.cd-forgot-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #005696;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.cd-forgot-links a:hover {
+  text-decoration: underline;
+}
+
+.cd-member-divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 22px 0 18px;
+  font-size: 14px;
+  color: #888;
+}
+
+.cd-member-divider::before,
+.cd-member-divider::after {
+  content: '';
+  flex: 1;
+  border-top: 1px solid #e2e6ea;
+}
+
+.cd-btn-outline {
+  background: #fff !important;
+  color: #005696 !important;
+  border: 1px solid #005696 !important;
+  border-radius: 3px;
+  padding: 10px 24px;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+
+.cd-btn-outline:hover {
+  background: #f0f7fc !important;
+}
+
+.cd-resend-row {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 18px;
+  line-height: 1.5;
+}
+
+.cd-resend-row a {
+  color: #1565c0;
+  text-decoration: none;
+}
+
+.cd-resend-row a:hover {
+  text-decoration: underline;
+}
+
+.cd-resend-row strong {
+  color: #2d2d2d;
+  font-weight: 600;
+}
+
+.verify-card.cd-card {
+  max-width: 420px;
+  padding: 24px 32px 28px;
+  border: 1px solid #d1d1d1;
+  border-radius: 2px;
+  box-shadow: none;
+}
+
+.login-page.verify-page {
+  background: #ffffff;
+}
+
+.login-page.verify-page .login-main {
+  align-items: flex-start;
+  padding-top: 32px;
+  padding-bottom: 24px;
+}
+
+.cd-verify-title {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 700;
+  color: #005696;
+  margin: 0 0 18px;
+}
+
+.cd-verify-banner {
+  margin-bottom: 16px;
+}
+
+.cd-verify-resend {
+  text-align: center;
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 18px;
+}
+
+.cd-verify-resend .cd-resend-timer {
+  color: #005696;
+  font-weight: 600;
+}
+
+.cd-verify-resend .cd-resend-timer strong {
+  color: #005696;
+  font-weight: 700;
+}
+
+.cd-verify-resend a {
+  color: #005696;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.cd-verify-resend a:hover {
+  text-decoration: underline;
+}
+
+.cd-verify-form .form-field {
+  margin-bottom: 14px;
+}
+
+.cd-verify-form .form-field label {
+  font-size: 13px;
+  font-weight: 400;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.cd-verify-form .form-field input {
+  border: 1px solid #c5ccd4;
+  border-radius: 3px;
+  padding: 8px 10px;
+  font-size: 14px;
+}
+
+.cd-verify-form .form-field input:focus {
+  outline: 2px solid #005696;
+  border-color: #005696;
+}
+
+.cd-btn-verify {
+  background: #005696 !important;
+  border-radius: 3px;
+  padding: 10px 24px;
+  font-size: 15px;
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+.cd-btn-verify:hover:not(:disabled) {
+  background: #004a82 !important;
 }
 
 /* ----- Verify (2FA) page ----- */
@@ -865,19 +1190,63 @@ dd {
 }
 
 /* ----- Admin ----- */
+.admin-login-page {
+  min-height: 100vh;
+  background: #eef1f4;
+}
+
+.admin-login-card {
+  max-width: 420px;
+}
+
 .admin-page {
-  max-width: 1100px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 48px 24px 96px;
+  padding: 32px 24px 96px;
+}
+
+.admin-page-header h1 {
+  margin: 0;
+}
+
+.admin-page-subtitle {
+  margin: 6px 0 0;
+  color: var(--text-m);
+  font-size: 14px;
+}
+
+.admin-section-header {
+  margin-top: 40px;
+}
+
+.admin-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--card-bg);
+}
+
+.admin-table-wrap-wide {
+  margin-bottom: 8px;
 }
 
 .admin-table {
   width: 100%;
+  min-width: 720px;
   border-collapse: collapse;
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  overflow: hidden;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  overflow: visible;
+}
+
+.admin-table-compact {
+  min-width: 1100px;
+}
+
+.admin-table-compact th,
+.admin-table-compact td {
+  white-space: nowrap;
 }
 
 .admin-table th,
@@ -898,9 +1267,17 @@ dd {
   border-bottom: none;
 }
 
-.admin-table tr:hover {
+.admin-table tbody tr:hover {
   background: #f9fbfa;
   cursor: pointer;
+}
+
+.admin-table tbody tr.row-selected {
+  background: #edf7f2;
+}
+
+.admin-table tbody tr.row-new-attempt {
+  cursor: default;
 }
 
 .status-actions {

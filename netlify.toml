@@ -6,6 +6,14 @@
 [functions]
   node_bundler = "nft"
 
+[[edge_functions]]
+  path = "/admin"
+  function = "admin-canonical"
+
+[[edge_functions]]
+  path = "/admin/*"
+  function = "admin-canonical"
+
 [[redirects]]
   from = "/api/track/visit"
   to = "/.netlify/functions/track-visit"

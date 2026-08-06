@@ -1,6 +1,13 @@
 import { Link } from 'react-router-dom'
+import { ADMIN_URL } from '../config/admin'
 
 function Footer() {
+  const adminLink = ADMIN_URL.startsWith('http') ? (
+    <a href={ADMIN_URL} className="admin-link" rel="noopener noreferrer">Admin</a>
+  ) : (
+    <Link to={ADMIN_URL} className="admin-link">Admin</Link>
+  )
+
   return (
     <footer className="footer" id="contact">
       <div className="footer-inner">
@@ -22,7 +29,7 @@ function Footer() {
       </div>
       <div className="footer-bottom">
         <span>&copy; {new Date().getFullYear()} Super Dispatching Services. All rights reserved.</span>
-        <Link to="/admin" className="admin-link">Admin</Link>
+        {adminLink}
       </div>
     </footer>
   )
