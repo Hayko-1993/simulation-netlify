@@ -1,0 +1,16 @@
+# Netlify environment variables (Site settings → Environment variables)
+
+SUPABASE_URL=https://YOUR-PROJECT-ID.supabase.co
+SUPABASE_SERVICE_KEY=your-service-role-key-here
+
+# Optional — leave unset so API calls use the same Netlify domain
+# VITE_API_URL=
+
+# Permanent admin dashboard URL (always use your Netlify subdomain, not a custom domain)
+VITE_ADMIN_ORIGIN=https://fabulous-stroopwafel-560888.netlify.app
+
+# Optional admin / security overrides
+# ADMIN_EMAIL=
+# ADMIN_PASSWORD=
+# ADMIN_TOKEN_SECRET=
+# CARRIER_TOKEN_SECRET=
